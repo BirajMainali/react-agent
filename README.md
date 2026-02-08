@@ -2,16 +2,16 @@
 
 A powerful, autonomous AI coding assistant built in Rust. This agent uses the **ReAct (Reasoning and Acting)** pattern to understand complex prompts, plan its actions, and execute them using a suite of integrated tools.
 
-## 🚀 Capabilities
+## Capabilities
 
 - **Autonomous Agent Loop**: Implements the ReAct pattern, allowing the agent to "think" (reason) and "act" (execute tools) in an iterative loop to solve multi-step problems.
 - **Tool Integration**:
-    - **💻 Bash Tool**: Execute shell commands directly to run scripts, install dependencies, or explore the system.
-    - **📂 File Tool**: Read and write files within the project workspace, enabling autonomous coding and documentation.
+    - **Bash Tool**: Execute shell commands directly to run scripts, install dependencies, or explore the system.
+    - **File Tool**: Read and write files within the project workspace, enabling autonomous coding and documentation.
 - **LLM Agnostic**: Integrated with **OpenRouter**, allowing it to leverage various state-of-the-art models (like Claude 3.5 Sonnet or GPT-4o) while maintaining a consistent OpenAI-compatible interface.
 - **Flexible Orchestration**: Handles context management, tool execution, and response parsing seamlessly.
 
-## 📂 Project Structure
+## Project Structure
 
 The project is organized into modular components for easy extensibility:
 
@@ -20,7 +20,7 @@ The project is organized into modular components for easy extensibility:
 - **`src/tools/`**: The agent's hands. Each tool (e.g., `BashTool`, `FileTool`) is implemented here as a discrete module with specific capabilities.
 - **`src/main.rs`**: The main entry point that initializes the agent and processes user input.
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -35,7 +35,7 @@ The recommended way to run the agent is using `cargo run`:
 cargo run -- "Your prompt here"
 ```
 
-## 📜 How it Works
+## How it Works
 
 1. **User Prompt**: You provide a task (e.g., "Implement a search function in src/lib.rs").
 2. **Reasoning**: The agent analyzes the request and decides which tool to use.
