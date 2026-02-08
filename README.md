@@ -1,35 +1,44 @@
-[![progress-banner](https://backend.codecrafters.io/progress/claude-code/08c54e97-15f6-41a9-a64b-8bac477e1327)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# react-agent
 
-This is a starting point for Rust solutions to the
-["Build Your own Claude Code" Challenge](https://codecrafters.io/challenges/claude-code).
+A powerful, autonomous AI coding assistant built in Rust. This agent uses the **ReAct (Reasoning and Acting)** pattern to understand complex prompts, plan its actions, and execute them using a suite of integrated tools.
 
-Claude Code is an AI coding assistant that uses Large Language Models (LLMs) to
-understand code and perform actions through tool calls. In this challenge,
-you'll build your own Claude Code from scratch by implementing an LLM-powered
-coding assistant.
+## 🚀 Capabilities
 
-Along the way you'll learn about HTTP RESTful APIs, OpenAI-compatible tool
-calling, agent loop, and how to integrate multiple tools into an AI assistant.
+- **Autonomous Agent Loop**: Implements the ReAct pattern, allowing the agent to "think" (reason) and "act" (execute tools) in an iterative loop to solve multi-step problems.
+- **Tool Integration**:
+    - **💻 Bash Tool**: Execute shell commands directly to run scripts, install dependencies, or explore the system.
+    - **📂 File Tool**: Read and write files within the project workspace, enabling autonomous coding and documentation.
+- **LLM Agnostic**: Integrated with **OpenRouter**, allowing it to leverage various state-of-the-art models (like Claude 3.5 Sonnet or GPT-4o) while maintaining a consistent OpenAI-compatible interface.
+- **Flexible Orchestration**: Handles context management, tool execution, and response parsing seamlessly.
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+## 📂 Project Structure
 
-# Passing the first stage
+The project is organized into modular components for easy extensibility:
 
-The entry point for your `claude-code` implementation is in `src/main.rs`. Study
-and uncomment the relevant code, and submit to pass the first stage:
+- **`src/agent/`**: The brain of the application. Contains the `Orchestrator` which manages the ReAct loop and maintains the conversation context.
+- **`src/llm/`**: The communication layer. Handles requests to LLM providers (via OpenRouter) and parses responses into usable payloads.
+- **`src/tools/`**: The agent's hands. Each tool (e.g., `BashTool`, `FileTool`) is implemented here as a discrete module with specific capabilities.
+- **`src/main.rs`**: The main entry point that initializes the agent and processes user input.
 
-```sh
-codecrafters submit
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- [Rust](https://www.rust-lang.org/tools/install) (1.92+)
+- An OpenRouter API Key (set as an environment variable)
+
+### Running the Agent
+
+The recommended way to run the agent is using `cargo run`:
+
+```bash
+cargo run -- "Your prompt here"
 ```
 
-# Stage 2 & beyond
+## 📜 How it Works
 
-Note: This section is for stages 2 and beyond.
-
-1. Ensure you have `cargo (1.92)` installed locally.
-2. Run `./your_program.sh` to run your program, which is implemented in
-   `src/main.rs`. This command compiles your Rust project, so it might be slow
-   the first time you run it. Subsequent runs will be fast.
-3. Run `codecrafters submit` to submit your solution to CodeCrafters. Test
-   output will be streamed to your terminal.
+1. **User Prompt**: You provide a task (e.g., "Implement a search function in src/lib.rs").
+2. **Reasoning**: The agent analyzes the request and decides which tool to use.
+3. **Action**: The agent executes a tool (like `read_file` or `bash`).
+4. **Observation**: The agent receives the output of the tool.
+5. **Iteration**: Steps 2-4 repeat until the agent determines the task is complete and provides a final response.

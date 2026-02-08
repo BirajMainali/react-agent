@@ -1,10 +1,9 @@
 use clap::Parser;
-use codecrafters_claude_code::agent::Orchestrator;
+use react_agent::agent::Orchestrator;
 
 #[derive(Parser)]
 #[command(author, version, about)]
 struct Args {
-    #[arg(short = 'p', long)]
     prompt: String,
 }
 
